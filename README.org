@@ -1,0 +1,29 @@
+#+TITLE: CRYPTOGRAPHY & SECURITY LABORATORY WORKS
+#+AUTHOR: FCIM FAF 203 Cius Iurie
+
+
+** 👋 TABLE OF CONTENTS :toc:
+  - [[#-introduction][📑 INTRODUCTION]]
+  - [[#-progress][🎯 PROGRESS]]
+  - [[#-contact][📮 CONTACT]]
+
+** 📑 INTRODUCTION
+
+*** About this Repository
+
+This repository contains homework assignments and laboratory works for the =CS= course here at =TUM FCIM=.
+
+All the solutions are written in =Python=.
+
+** 🎯 PROGRESS
+
+| Laboratory No. | Status  | Grade  |
+|----------------+---------+--------|
+| LAB 01         | =DOING= | =NONE= |
+| LAB 02         | =TODO=  | =NONE= |
+| LAB 03         | =TODO=  | =NONE= |
+|----------------+---------+--------|
+
+** 📮 CONTACT
+
+If you have any question, please contact me through email: =iurie.cius@isa.utm.md=.
