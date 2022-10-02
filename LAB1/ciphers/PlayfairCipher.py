@@ -1,7 +1,9 @@
+list1 = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'k', 'l', 'm',
+                 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
 class PlayfairCipher:
-    def __init__(self, text):
-        self.text = text
+    def __init__(self):
+        pass
 
     def __to_lower_case(self, text):
         return text.lower()
@@ -9,42 +11,40 @@ class PlayfairCipher:
     def __remove_white_space(self, text):
         return text.strip()
 
-    def get_diagraph(self):
+    def __get_diagraph(self, text):
         diagraph = list()
         group = 0
 
-        for i in range(2, len(self.text), 2):
-            diagraph.append(self.text[group:i])
+        for i in range(2, len(text), 2):
+            diagraph.append(text[group:i])
 
             group = i
 
-        diagraph.append(self.text[group:])
+        diagraph.append(text[group:])
         return diagraph
 
-    def filler_letter(self):
-        k = len(self.text)
+    def __filler_letter(self, text):
+        k = len(text)
 
         if k % 2 == 0:
             for i in range(0, k, 2):
-                if self.text[i] == self.text[i+1]:
-                    new_word = self.text[0:i+1] + str('x') + self.text[i+1:]
-                    new_word = self.filler_letter(new_word)
+                if text[i] == text[i+1]:
+                    new_word = text[0:i+1] + str('x') + text[i+1:]
+                    new_word = self.__filler_letter(new_word)
                     break
                 else:
-                    new_word = self.text
+                    new_word = text
         else:
             for i in range(0, k-1, 2):
-                if self.text[i] == text[i+1]:
-                    new_word = text[0:i+1] + str('x') + self.text[i+1:]
-                    new_word = self.filler_letter(new_word)
+                if text[i] == text[i+1]:
+                    new_word = text[0:i+1] + str('x') + text[i+1:]
+                    new_word = self.__filler_letter(new_word)
                     break
                 else:
                     new_word = text
         return new_word
 
-    
-    def generate_key_table(self, word):
-        list1 = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    def generate_key_table(self, word, list1):
         key_letters = []
 
         for i in word:
@@ -53,6 +53,9 @@ class PlayfairCipher:
 
         comp_elements = []
         for i in key_letters:
+            if i not in comp_elements:
+                comp_elements.append(i)
+        for i in list1:
             if i not in comp_elements:
                 comp_elements.append(i)
 
@@ -65,8 +68,8 @@ class PlayfairCipher:
         return matrix
 
     def search(self, matrix, element):
-        for i in range(len(matrix)):
-            for j in range(len(matrix)):
+        for i in range(5):
+            for j in range(5):
                 if (matrix[i][j] == element):
                     return i, j
 
@@ -101,24 +104,37 @@ class PlayfairCipher:
         return char1, char2
 
     def encrypt_rectangule(self, matrix, e1r, e1c, e2r, e2c):
-        return matrix[e1r][e2c], matrix[e2r][e1c]
+        char1, char2 = '', ''
+        char1, char2 = matrix[e1r][e2c], matrix[e2r][e1c]
+        return char1, char2
 
-    def encrypt(self, matrix, plainlist):
+    def encrypt(self, text, key):
+        text = self.__remove_white_space(self.__to_lower_case(text))
+        plainlist = self.__get_diagraph(self.__filler_letter(text))
+
+        if len(plainlist[-1]) != 2:
+            plainlist[-1] = plainlist[-1] + 'z'
+
+        matrix = self.generate_key_table(key, list1)
+
         cipher_text = []
 
         for i in range(0, len(plainlist)):
             c1, c2 = 0, 0
-            elm_1x, elm_1y = self.search(Matrix, plainlist[i][0])
-            elm_2x, elm_2y = self.search(Matrix, plainlist[i][1])
+            elm_1x, elm_1y = self.search(matrix, plainlist[i][0])
+            elm_2x, elm_2y = self.search(matrix, plainlist[i][1])
 
             if elm_1x == elm_2x:
-                c1, c2 = self.encrypt_row(Matrix, elm_1x, elm_1y, elm_2x, elm_2y)
+                c1, c2 = self.encrypt_row(
+                    matrix, elm_1x, elm_1y, elm_2x, elm_2y)
             elif elm_1y == elm_2y:
-                c1, c2 = self.encrypt_column(Matrix, elm_1x, elm_1y, elm_2x, elm_2y)
+                c1, c2 = self.encrypt_column(
+                    matrix, elm_1x, elm_1y, elm_2x, elm_2y)
             else:
-                c1, c2 = self.encrypt_rectangule(Matrix, elm_1x, elm_1y, elm_2x, elm_2y)
+                c1, c2 = self.encrypt_rectangule(
+                    matrix, elm_1x, elm_1y, elm_2x, elm_2y)
 
             cipher = c1 + c2
             cipher_text.append(cipher)
 
-        return cipher_text
+        return ''.join(cipher_text)

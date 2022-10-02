@@ -90,3 +90,15 @@ After Split: 'in' 'st' 'ru' 'me' 'nt' 'sz'
 #+end_example
 
 ** CONCLUSION / RESULTS
+
+#+begin_example
+Original Text: cryprographyandsecurity
+Caesar Cipher: pelcebtenculnaqfrphevgl
+-----------------------------
+Original Text: cryprographyandsecurity
+Playfair Cipher: atzotmmwdmixbmbuifqsoyzv      
+-----------------------------
+Original Text: cryprographyandsecurity
+Vigenere Cipher: TDPGDFXDRGTPRZUJQTLDZKK       
+-----------------------------
+#+end_example

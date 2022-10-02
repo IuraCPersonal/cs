@@ -23,3 +23,6 @@ class CaesarCipher:
                 self.text += chr((ord(char) + 26 - self.shift - 97) % 26 + 97)
 
         return self.text
+    
+    def __str__(self):
+        return self.text

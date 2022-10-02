@@ -14,7 +14,7 @@ class VigenereCipher:
 
         return (''.join(self.keyword))
 
-    def _encryption(self):
+    def encrypt(self):
         
         encrypted_message = ""
         key = self._generate_key()
