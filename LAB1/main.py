@@ -25,20 +25,24 @@ class Format:
 
 if __name__ == '__main__':
     text = 'cryprographyandsecurity'
-    key = 'faf'
+    key = 'fcim'
 
     CC = CaesarCipher(shift=13)
-    # CCP = CaesarCipherWithPermutation()
+    CCP = CaesarCipherWithPermutation(shift=13)
     PC = PlayfairCipher()
     VP = VigenereCipher(text=text, keyword=key)
 
     caesar_cipher = CC.encrypt(text)
-    # CCP.encrypt()
+    caesar_cipher_perm = CCP.encrypt(text=text, keyword=key)
     playfair_cipher = PC.encrypt(text=text, key=key)
     vigenere_cipher = VP.encrypt()
 
     Format.original(f'{text}')
     Format.encrypted(f'Caesar Cipher: {caesar_cipher}')
+    Format.br()
+
+    Format.original(f'{text}')
+    Format.encrypted(f'Caesar Cipher With Permutation: {caesar_cipher_perm}')
     Format.br()
 
     Format.original(f'{text}')

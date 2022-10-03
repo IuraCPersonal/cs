@@ -6,11 +6,18 @@ class CaesarCipherWithPermutation:
         self.shift = shift
 
     def __alphabet_permutation(self, keyword):
-        alphabet = string.ascii_uppercase
+        alphabet = string.ascii_lowercase
 
-        alphabet_with_permutation = ''.join(sorted(set(keyword), key=keyword.index))
+        s = alphabet.translate({ord(c): None for c in keyword.lower()})
+        s = keyword.lower() + s
 
-    def encrypt(self, text):
-        pass
+        return s
 
-        
+    def encrypt(self, text, keyword='FAF'):
+        new_alphabet = self.__alphabet_permutation(keyword)
+        cipher_text = ''
+
+        for index, c in enumerate(text):
+            cipher_text += new_alphabet[(new_alphabet.find(c) + self.shift) % len(new_alphabet)]
+
+        return cipher_text
