@@ -13,14 +13,14 @@
 
 This repository contains homework assignments and laboratory works for the =CS= course here at =TUM FCIM=.
 
-All the solutions are written in =Python=.
+All the solutions are written in =Python= and =Ruby=.
 
 ** 🎯 PROGRESS
 
 | Laboratory No. | Status | Grade     |
 |----------------+--------+-----------|
 | LAB 01         | =DONE= | =WAITING= |
-| LAB 02         | =TODO= | =NONE=    |
+| LAB 02         | =DONE= | =WAITING= |
 | LAB 03         | =TODO= | =NONE=    |
 |----------------+--------+-----------|
 

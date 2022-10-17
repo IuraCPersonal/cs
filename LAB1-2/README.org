@@ -1,0 +1,225 @@
+#+TITLE: CRYPTOGRAPHY AND SECURITY LABORATORY WORKS 1 & 2
+#+AUTHOR: FCIM FAF 203 Cius Iurie
+#+OPTIONS: toc:2
+
+
+** TABLE OF CONTENTS :toc:
+- [[#intro-to-cryptography-classical-ciphers-caesar-cipher][INTRO TO CRYPTOGRAPHY. CLASSICAL CIPHERS. CAESAR CIPHER.]]
+  - [[#how-to-run][HOW TO RUN]]
+  - [[#theory][THEORY]]
+  - [[#objectives][OBJECTIVES]]
+  - [[#implementation][IMPLEMENTATION]]
+  - [[#conclusion--results][CONCLUSION / RESULTS]]
+- [[#symmetric-ciphers-stream-ciphers-block-ciphers][SYMMETRIC CIPHERS. STREAM CIPHERS. BLOCK CIPHERS.]]
+  - [[#how-to-run-1][HOW TO RUN]]
+  - [[#theory-1][THEORY]]
+  - [[#objectives-1][OBJECTIVES]]
+  - [[#implementation-1][IMPLEMENTATION]]
+  - [[#conclusion--results-1][CONCLUSION / RESULTS]]
+
+* INTRO TO CRYPTOGRAPHY. CLASSICAL CIPHERS. CAESAR CIPHER.
+
+** HOW TO RUN
+
+#+begin_src bash
+python3 main.py
+#+end_src
+
+** THEORY
+
+*** What is Cryptography?
+
+The study of mathematical techniques for securing digital information, systems, and distributed computations against adversarial attacks.
+
+** OBJECTIVES
+
+- Get familiar with the basics of cryptography and classical ciphers.
+- Implement 4 types od the classical ciphers:
+  - Caesar cipher with one key used for substitution (as explained above),
+  - Caesar cipher with one key used for substitution, and a permutation of the alphabet,
+  - Vigenere cipher,
+  - Playfair cipher.
+- Structure the project in methods/classes/packages as neeeded.
+
+** IMPLEMENTATION
+
+*** CAESAR CIPHER
+
+The Caesar Cipher technique is one of the earliest and simplest methods of encryption technique. It’s simply a type of substitution cipher, i.e., each letter of a given text is replaced by a letter with a fixed number of positions down the alphabet. For example with a shift of 1, A would be replaced by B, B would become C, and so on. The method is apparently named after Julius Caesar, who apparently used it to communicate with his officials.
+
+Algorithm for Caesar Cipher:
+
+1. Traverse the given text one character at a time .
+2. For each character, transform the given character as per the rule, depending on whether we’re encrypting or decrypting the text.
+3. Return the new string generated.
+
+Example:
+
+#+begin_example
+Text : ABCDEFGHIJKLMNOPQRSTUVWXYZ
+Shift: 23
+Cipher: XYZABCDEFGHIJKLMNOPQRSTUVW
+
+Text : ATTACKATONCE
+Shift: 4
+Cipher: EXXEGOEXSRGI
+#+end_example
+
+#+include: "./ciphers/CaesarCipher.py"
+
+*** VIGENERE CIPHER
+
+Vigenere Cipher is a method of encrypting alphabetic text. It uses a simple form of polyalphabetic substitution. A polyalphabetic cipher is any cipher based on substitution, using multiple substitution alphabets. The encryption of the original text is done using the Vigenère square or Vigenère table.
+
+- The table consists of the alphabets written out 26 times in different rows, each alphabet shifted cyclically to the left compared to the previous alphabet, corresponding to the 26 possible Caesar Ciphers.
+- At different points in the encryption process, the cipher uses a different alphabet from one of the rows.
+- The alphabet used at each point depends on a repeating keyword.
+
+Example:
+
+#+begin_example
+Plaintext :   GEEKSFORGEEKS
+Keyword   :   AYUSH
+
+Ciphertext :  GCYCZFMLYLEIM
+#+end_example
+
+The first letter of the plaintext, G is paired with A, the first letter of the key. So use row G and column A of the Vigenère square, namely G. Similarly, for the second letter of the plaintext, the second letter of the key is used, the letter at row E, and column Y is C. The rest of the plaintext is enciphered in a similar fashion.
+
+
+*** PLAYFAIR CIPHER
+
+=The Playfair Cipher= was the first practical digraph substitution cipher. The scheme was invented in 1854 by Charles Wheatstone but was named after Lord Playfair who promoted the use of the cipher. In playfair cipher unlike traditional cipher we encrypt a pair of alphabets(digraphs) instead of a single alphabet.
+
+The Algorithm consists of 2 steps:
+
+1. Generate the key Square(5×5):
+    - The key square is a 5×5 grid of alphabets that acts as the key for encrypting the plaintext. Each of the 25 alphabets must be unique and one letter of the alphabet (usually J) is omitted from the table (as the table can hold only 25 alphabets). If the plaintext contains J, then it is replaced by I.
+    - The initial alphabets in the key square are the unique alphabets of the key in the order in which they appear followed by the remaining letters of the alphabet in order.
+2. Algorithm to encrypt the plain text: The plaintext is split into pairs of two letters (digraphs). If there is an odd number of letters, a Z is added to the last letter.
+
+For example:
+
+#+begin_example
+PlainText: "instruments"
+After Split: 'in' 'st' 'ru' 'me' 'nt' 'sz'
+#+end_example
+
+** CONCLUSION / RESULTS
+
+#+begin_example
+Original Text: cryprographyandsecurity
+Caesar Cipher: pelcebtenculnaqfrphevgl
+-----------------------------
+Original Text: cryprographyandsecurity
+Playfair Cipher: atzotmmwdmixbmbuifqsoyzv      
+-----------------------------
+Original Text: cryprographyandsecurity
+Vigenere Cipher: TDPGDFXDRGTPRZUJQTLDZKK       
+-----------------------------
+#+end_example
+
+
+* SYMMETRIC CIPHERS. STREAM CIPHERS. BLOCK CIPHERS.
+
+** HOW TO RUN
+
+#+begin_src bash
+ruby main.rb
+#+end_src
+
+** THEORY
+
+Symmetric Cryptography deals with the encryption of plain text when having only one encryption key which needs to remain private. Based on the way the plain text is processed/encrypted there are 2 types of ciphers:
+
+1. Stream ciphers:
+    - The encryption is done one byte at a time.
+    - Stream ciphers use confusion to hide the plain text.
+    - Make use of substitution techniques to modify the plain text.
+    - The implementation is fairly complex.
+    - The execution is fast.
+2. Block ciphers:
+    - The encryption is done one block of plain text at a time.
+    - Block ciphers use confusion and diffusion to hide the plain text.
+    - Make use of transposition techniques to modify the plain text.
+    - The implementation is simpler relative to the stream ciphers.
+    - The execution is slow compared to the stream ciphers.
+
+** OBJECTIVES
+
+- Get familiar with the symmetric cryptography, stream and block ciphers.
+- Implement an example of a stream cipher.
+- Implement an example of a block cipher.
+- The implementation should, ideally follow the abstraction/contract/interface used in the previous laboratory work.
+- Please use packages/directories to logically split the files that you will have.
+- As in the previous task, please use a client class or test classes to showcase the execution of your programs.
+
+** IMPLEMENTATION
+
+*** STREAM CIPHER
+
+In stream cipher, one byte is encrypted at a time while in block cipher ~128 bits are encrypted at a time.
+
+Initially, a =key(k)= will be supplied as input to pseudorandom bit generator and then it produces a random 8-bit output which is treated as keystream.
+
+The resulted keystream will be of size 1 byte, i.e., 8 bits.
+
+**** ENCRYPTION
+
+1. Plain Text and Keystream produces Cipher Text (Same keystream will be used for decryption.).
+2. The Plaintext will undergo XOR operation with keystream bit-by-bit and produces the Cipher Text.
+
+Example:
+
+#+begin_example
+Plain Text : 10011001
+Keystream  : 11000011
+`````````````````````
+Cipher Text : 01011010
+#+end_example
+
+*** RC4
+
+=RC4= is a stream cipher and variable-length key algorithm. This algorithm encrypts one byte at a time (or larger units at a time).
+
+A key input is pseudorandom bit generator that produces a stream 8-bit number that is unpredictable without knowledge of input key, The output of the generator is called key-stream, is combined one byte at a time with the plaintext stream cipher using X-OR operation.
+
+#+begin_example
+RC4 Encryption
+10011000 ? 01010000 = 11001000
+
+RC4 Decryption
+11001000 ? 01010000 = 10011000
+#+end_example
+
+*** DES
+
+Data encryption standard (DES) has been found vulnerable to very powerful attacks and therefore, the popularity of DES has been found slightly on the decline. DES is a block cipher and encrypts data in blocks of size of 64 bits each, which means 64 bits of plain text go as the input to DES, which produces 64 bits of ciphertext. The same algorithm and key are used for encryption and decryption, with minor differences. The key length is 56 bits.
+
+** CONCLUSION / RESULTS
+
+#+begin_example
+Encryption:
+
+After initial permutation: 14A7D67818CA18AD
+After splitting: L0=14A7D678 R0=18CA18AD
+
+Round 1 18CA18AD 5A78E394 194CD072DE8C
+Round 2 5A78E394 4A1210F6 4568581ABCCE
+Round 3 4A1210F6 B8089591 06EDA4ACF5B5
+Round 4 B8089591 236779C2 DA2D032B6EE3
+Round 5 236779C2 A15A4B87 69A629FEC913
+Round 6 A15A4B87 2E8F9C65 C1948E87475E
+Round 7 2E8F9C65 A9FC20A3 708AD2DDB3C0
+Round 8 A9FC20A3 308BEE97 34F822F0C66D
+Round 9 308BEE97 10AF9D37 84BB4473DCCC
+Round 10 10AF9D37 6CA6CB20 02765708B5BF
+Round 11 6CA6CB20 FF3C485F 6D5560AF7CA5
+Round 12 FF3C485F 22A5963B C2C1E96A4BF3
+Round 13 22A5963B 387CCDAA 99C31397C91F
+Round 14 387CCDAA BD2DD2AB 251B8BC717D0
+Round 15 BD2DD2AB CF26B472 3330C5D9A36D
+Round 16 19BA9212 CF26B472 181C5D75C66D
+
+Cipher Text: C0B7A8D05F3A829C
+#+end_example

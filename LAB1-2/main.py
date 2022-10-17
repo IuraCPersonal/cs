@@ -1,7 +1,7 @@
-from ciphers.CaesarCipher import CaesarCipher
-from ciphers.CaesarCipherWithPermutation import CaesarCipherWithPermutation
-from ciphers.PlayfairCipher import PlayfairCipher
-from ciphers.VigenereCipher import VigenereCipher
+from ciphers.caesar.CaesarCipher import CaesarCipher
+from ciphers.caesar.CaesarCipherWithPermutation import CaesarCipherWithPermutation
+from ciphers.caesar.PlayfairCipher import PlayfairCipher
+from ciphers.caesar.VigenereCipher import VigenereCipher
 
 class Format:
     __green = '\033[32m'
