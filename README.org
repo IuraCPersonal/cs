@@ -19,9 +19,9 @@ All the solutions are written in =Python= and =Ruby=.
 
 | Laboratory No. | Status | Grade     |
 |----------------+--------+-----------|
-| LAB 01         | =DONE= | =WAITING= |
+| LAB 01         | =DONE= | =10=      |
 | LAB 02         | =DONE= | =WAITING= |
-| LAB 03         | =TODO= | =NONE=    |
+| LAB 03         | =DOING= | =NONE=    |
 |----------------+--------+-----------|
 
 ** 📮 CONTACT
