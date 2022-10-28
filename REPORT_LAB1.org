@@ -4,18 +4,39 @@
 
 
 ** TABLE OF CONTENTS :toc:
-- [[#how-to-run][HOW TO RUN]]
-- [[#theory][THEORY]]
-- [[#objectives][OBJECTIVES]]
-- [[#implementation][IMPLEMENTATION]]
-- [[#conclusion--results][CONCLUSION / RESULTS]]
+- [[#intro-to-cryptography-classical-ciphers-caesar-cipher][INTRO TO CRYPTOGRAPHY. CLASSICAL CIPHERS. CAESAR CIPHER.]]
+  - [[#how-to-use][HOW TO USE]]
+  - [[#theory][THEORY]]
+  - [[#objectives][OBJECTIVES]]
+  - [[#implementation][IMPLEMENTATION]]
+  - [[#conclusion--results][CONCLUSION / RESULTS]]
 
 * INTRO TO CRYPTOGRAPHY. CLASSICAL CIPHERS. CAESAR CIPHER.
 
-** HOW TO RUN
+** HOW TO USE
+
+Download the =cs= folder.
 
 #+begin_src bash
-python3 main.py
+git clone https://github.com/IuraCPersonal/cs
+#+end_src
+
+#+begin_src python
+from cs.ciphers.caesar.*AlgName* import *AlgName*
+#+end_src
+
+Example:
+
+#+begin_src python
+from cs.ciphers.caesar.CaesarCipher import CaesarCipher
+
+text = 'cryprographyandsecurity'
+key = 'fcim'
+
+CC = CaesarCipher(shift=13)
+caesar_cipher = CC.encrypt(text)
+
+print(caesar_cipher)
 #+end_src
 
 ** THEORY

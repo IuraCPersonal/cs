@@ -2,10 +2,28 @@
 #+AUTHOR: FCIM FAF-203 Cius Iurie
 
 ** TABLE OF CONTENTS :toc:
+  - [[#how-to-run][HOW TO RUN]]
   - [[#topic-asymmetric-ciphers][TOPIC: ASYMMETRIC CIPHERS]]
   - [[#objectives][OBJECTIVES]]
   - [[#the-rsa-algorithm][THE RSA ALGORITHM]]
   - [[#implementation][IMPLEMENTATION]]
+  - [[#conclusionresults][CONCLUSION/RESULTS]]
+
+** HOW TO RUN
+
+This is a =Flask= application. Make sure you have it installed.
+
+#+begin_src bash
+pip install Flask
+#+end_src
+
+The run the =run.sh= file. On UNIX/Linux give it executive rights =chmod +x run.sh=.
+
+#+begin_src bash
+$ ./run.sh
+#+end_src
+
+You can use the classes without Flask as well, just import the class from =rsa_cipher.py=.
 
 ** TOPIC: ASYMMETRIC CIPHERS
 
@@ -87,3 +105,39 @@ The private key has been made of n and d:
 #+begin_src python
 private_key = (n, d)
 #+end_src
+
+*** ENCRYPTION
+
+The Cipher Text is equal to =Pe mod n=, where P is the plaintext.
+
+#+begin_src python
+def encrypt(self, key: tuple, block_size: int=DEFAULT_BLOCK_SIZE) -> list:
+    blocks = self.reblocking(block_size)
+    n, e = key
+    encrypted_blocks = [pow(block, e, n) for block in blocks]
+
+    return encrypted_blocks
+#+end_src
+
+*** DECRYPTION
+
+=De mod n= where D will refund the plaintext.
+
+#+begin_src python
+def decrypt(self, encrypted_blocks: list, message_length: int, key: tuple, block_size: int=DEFAULT_BLOCK_SIZE):
+    n, d = key
+    decrypted_blocks = [pow(block, d, n) for block in encrypted_blocks]
+
+    return self.handle_blocks(decrypted_blocks, message_length, block_size)
+#+end_src
+
+** CONCLUSION/RESULTS
+
+1. Input:
+    - Key Size: =512=
+    - Block Size: =128=
+    - Message: =ilovecs=
+2. Output:
+    - Public Key: =10556642053289349232165284590437397071853550071090144545636202214379188277566823969366263280395575303787533747210304305046010391752666335056829808243282941=
+    - Private Key: =64600151839383920352066660792928768749950616921232285767614685263041241306711007708374240217838998184058298470771954289182111173763914866232688520067816395251200714310744629703960710203059952957798022209965463325008486140264805889845912858856973990353424278252042125041430045948990948057329456247626305395349=
+    - Encrypted Text: =12819611177864020478803843424150907777229908268768985103377465587431154333675342977914311667130116385593536948808109553048476071280281002644925215869622432332766311740317360388294362554302746148777137752831252215848911098387102995004247474881275194222047338074564742793870382809536386432874832790548171651=
