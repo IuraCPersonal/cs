@@ -1,0 +1,89 @@
+#+TITLE: CRYPTOGRAPHY AND SECURITY LABORATORY WORK 3
+#+AUTHOR: FCIM FAF-203 Cius Iurie
+
+** TABLE OF CONTENTS :toc:
+  - [[#topic-asymmetric-ciphers][TOPIC: ASYMMETRIC CIPHERS]]
+  - [[#objectives][OBJECTIVES]]
+  - [[#the-rsa-algorithm][THE RSA ALGORITHM]]
+  - [[#implementation][IMPLEMENTATION]]
+
+** TOPIC: ASYMMETRIC CIPHERS
+
+=Asymmetric Cryptography= (a.k.a. Public-Key Cryptography)deals with the encryption of plain text when having 2 keys, one being public and the other one private. The keys form a pair and despite being different they are related.
+
+As the name implies, the public key is available to the public but the private one is available only to the authenticated recipients.
+
+A popular use case of the asymmetric encryption is in SSL/TLS certificates along side symmetric encryption mechanisms. It is necessary to use both types of encryption because asymmetric ciphers are computationally expensive, so these are usually used for the communication initiation and key exchange, or sometimes called handshake. The messages after that are encrypted with symmetric ciphers.
+
+** OBJECTIVES
+
+- Get familiar with the asymmetric cryptography mechanisms.
+- Implement an example of an asymmetric cipher.
+- As in the previous task, please use a client class or test classes to showcase the execution of your programs.
+
+** THE RSA ALGORITHM
+
+Introduced at the time when the era of electronic email was expected to soon arise, RSA implemented two important ideas:
+
+1. =Public-key encryption=. This idea omits the need for a “courier” to deliver keys to recipients over another secure channel before transmitting the originally-intended message. In RSA, encryption keys are public, while the decryption keys are not, so only the person with the correct decryption key can decipher an encrypted message. Everyone has their own encryption and decryption keys. The keys must be made in such a way that the decryption key may not be easily deduced from the public encryption key.
+
+2. =Digital signatures=. The receiver may need to verify that a transmitted message actually originated from the sender (signature), and didn’t just come from there (authentication). This is done using the sender’s decryption key, and the signature can later be verified by anyone, using the corresponding public encryption key. Signatures therefore cannot be forged. Also, no signer can later deny having signed the message.
+
+** IMPLEMENTATION
+
+*** GENERATING PUBLIC KEY
+
+1. Select two prime no's.
+
+#+begin_src python
+p = RabinMiller.generate_large_prime(key_size)
+q = RabinMiller.generate_large_prime(key_size)
+#+end_src
+
+To achieve that, I am going to use the Rabin Miller's algorithm. An algorithm which determines whether a given number is likely to be prime.
+
+#+begin_src python
+@staticmethod
+def generate_large_prime(key_size=1024):
+    while True:
+        num = random.randrange(2 ** (key_size - 1), 2 ** (key_size))
+        if RabinMiller.is_prime_low_num(num):
+            return num
+#+end_src
+
+Now compute the First part of the Public key:
+
+#+begin_src python
+n = q * p
+#+end_src
+
+2. We also need a small exponent say =e=:
+
+#+begin_src python
+while True:
+    e = random.randrange(2 ** (key_size - 1), 2 ** (key_size))
+    if cs.gcd(e, (p - 1) * (q - 1)) == 1:
+        break
+#+end_src
+
+The public key has been made of n and e:
+
+#+begin_src python
+public_key = (n, e)
+#+end_src
+
+*** GENERATING PRIVATE KEY
+
+1. We need to calculate $\phi$(n):
+
+2. Now calculate Private Key, =d=:
+
+#+begin_src python
+d = cs.find_mod_inverse(e, (p - 1) * (q - 1))
+#+end_src
+
+The private key has been made of n and d:
+
+#+begin_src python
+private_key = (n, d)
+#+end_src

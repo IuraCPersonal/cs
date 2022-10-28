@@ -1,7 +1,0 @@
-* TODO: Add documentation..
-
-* HOW TO RUN
-
-#+BEGIN_SRC bash
-$ streamlit run main.py
-#+END_SRC

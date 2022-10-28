@@ -4,4 +4,4 @@ set -a
 source .env
 set +a
 
-streamlit run rsa_cipher.py
+streamlit run main.py

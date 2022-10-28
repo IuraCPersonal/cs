@@ -1,21 +1,14 @@
-#+TITLE: CRYPTOGRAPHY AND SECURITY LABORATORY WORKS 1 & 2
+#+TITLE: CRYPTOGRAPHY AND SECURITY LABORATORY WORK 1
 #+AUTHOR: FCIM FAF 203 Cius Iurie
 #+OPTIONS: toc:2
 
 
 ** TABLE OF CONTENTS :toc:
-- [[#intro-to-cryptography-classical-ciphers-caesar-cipher][INTRO TO CRYPTOGRAPHY. CLASSICAL CIPHERS. CAESAR CIPHER.]]
-  - [[#how-to-run][HOW TO RUN]]
-  - [[#theory][THEORY]]
-  - [[#objectives][OBJECTIVES]]
-  - [[#implementation][IMPLEMENTATION]]
-  - [[#conclusion--results][CONCLUSION / RESULTS]]
-- [[#symmetric-ciphers-stream-ciphers-block-ciphers][SYMMETRIC CIPHERS. STREAM CIPHERS. BLOCK CIPHERS.]]
-  - [[#how-to-run-1][HOW TO RUN]]
-  - [[#theory-1][THEORY]]
-  - [[#objectives-1][OBJECTIVES]]
-  - [[#implementation-1][IMPLEMENTATION]]
-  - [[#conclusion--results-1][CONCLUSION / RESULTS]]
+- [[#how-to-run][HOW TO RUN]]
+- [[#theory][THEORY]]
+- [[#objectives][OBJECTIVES]]
+- [[#implementation][IMPLEMENTATION]]
+- [[#conclusion--results][CONCLUSION / RESULTS]]
 
 * INTRO TO CRYPTOGRAPHY. CLASSICAL CIPHERS. CAESAR CIPHER.
 
