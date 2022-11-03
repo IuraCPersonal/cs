@@ -9,22 +9,6 @@
   - [[#implementation][IMPLEMENTATION]]
   - [[#conclusionresults][CONCLUSION/RESULTS]]
 
-** HOW TO RUN
-
-This is a =Flask= application. Make sure you have it installed.
-
-#+begin_src bash
-pip install Flask
-#+end_src
-
-The run the =run.sh= file. On UNIX/Linux give it executive rights =chmod +x run.sh=.
-
-#+begin_src bash
-$ ./run.sh
-#+end_src
-
-You can use the classes without Flask as well, just import the class from =rsa_cipher.py=.
-
 ** TOPIC: ASYMMETRIC CIPHERS
 
 =Asymmetric Cryptography= (a.k.a. Public-Key Cryptography)deals with the encryption of plain text when having 2 keys, one being public and the other one private. The keys form a pair and despite being different they are related.
