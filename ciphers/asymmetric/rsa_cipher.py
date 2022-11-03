@@ -1,11 +1,7 @@
 import os
 
-
-DEFAULT_BLOCK_SIZE = int(os.environ.get('DEFAULT_BLOCK_SIZE'))
-BYTE_SIZE = int(os.environ.get('BYTE_SIZE'))
-
-# DEFAULT_BLOCK_SIZE = 128
-# BYTE_SIZE = 256
+DEFAULT_BLOCK_SIZE = 128
+BYTE_SIZE = 256
 
 class RSA:
     def __init__(self, message: str):
