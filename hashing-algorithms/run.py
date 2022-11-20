@@ -5,7 +5,6 @@ from cryptography.hazmat.primitives import hashes
 from sha256 import SHA256
 
 import sys
-import hashlib
 import argparse
 
 sys.path.append('../../cs')
@@ -98,10 +97,15 @@ if __name__ == '__main__':
     # Get a digest of it via hashing.
     hashed_input = SHA256(msg).hash
 
-    # Encrypted message.
-    enc_msg, private_key = DigitalSignature.assymetric_encryption(
-        hashed_input.encode())
-    dcp_msg = DigitalSignature.assymetric_decryption(
-        enc_msg, private_key).decode()
+    print(hashed_input)
 
-    DigitalSignature.digital_signature_check(msg, dcp_msg)
+    # Encrypted message.
+    encrypted_message, private_key = DigitalSignature.assymetric_encryption(
+        hashed_input.encode())
+    
+    # Decrypted message.
+    decrypted_message = DigitalSignature.assymetric_decryption(
+        encrypted_message, private_key).decode()
+
+    # Perform a digital signature check by comparing the hash of the message with the decrypted one.
+    DigitalSignature.digital_signature_check(msg, decrypted_message)
