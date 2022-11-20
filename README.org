@@ -19,9 +19,10 @@ All the solutions are written in =Python= and =Ruby=.
 
 | Laboratory No. | Status  | Grade     |
 |----------------+---------+-----------|
-| [[https://github.com/IuraCPersonal/cs/blob/main/REPORT_LAB1.org][LAB 01]]         | =DONE=  | =10=      |
-| [[https://github.com/IuraCPersonal/cs/blob/main/REPORT_LAB2.org][LAB 02]]         | =FIXED= | =7=       |
-| [[https://github.com/IuraCPersonal/cs/blob/main/REPORT_LAB3.org][LAB 03]]         | =DONE=  | =WAITING= |
+| [[https://github.com/IuraCPersonal/cs/blob/main/reports/REPORT_LAB1.org][LAB 01]]         | =DONE=  | =10=      |
+| [[https://github.com/IuraCPersonal/cs/blob/main/reports/REPORT_LAB2.org][LAB 02]]         | =FIXED= | =7=       |
+| [[https://github.com/IuraCPersonal/cs/blob/main/reports/REPORT_LAB3.org][LAB 03]]         | =DONE=  | =10= |
+| [[https://github.com/IuraCPersonal/cs/blob/main/reports/REPORT_LAB4.md][LAB 04]]         | =DONE=  | =WAITING= |
 |----------------+---------+-----------|
 
 ** 📮 CONTACT
