@@ -132,8 +132,8 @@ self.hashes = [
     for index, element in enumerate(self.hashes)
 ]
 ```
-
-## RESULTS
+    
+### HASH RESULTS
 
 ```md
 Input : hello world
@@ -144,4 +144,134 @@ Output: 112e476505aab51b05aeb2246c02a11df03e1187e886f7c55d4e9935c290ade
 
 Input : K1t4fo0V
 Output: 0a979e43f4874eb24b740c0157994e34636eed0425688161cc58e8b26b1dcf4e
+```
+    
+## PROJECT WORKFLOW
+    
+First, let's take the user's input and parse it:
+    
+```py
+ def take_input():
+        parser = argparse.ArgumentParser()
+
+        parser.add_argument(
+            "-s",
+            "--string",
+            dest="input_string",
+            default="Hello World!! Welcome to Cryptography",
+            help="Hash the string",
+        )
+
+        parser.add_argument(
+            "-f",
+            "--file",
+            dest="input_file",
+            help="Hash contents of a file"
+        )
+
+        args = parser.parse_args()
+        input_string = args.input_string
+
+        # hash input should be a bytestring
+        if args.input_file:
+            with open(args.input_file, "rb") as f:
+                hash_input = f.read()
+        else:
+            hash_input = bytes(input_string, "utf-8")
+
+        return hash_input
+```
+    
+Now, let's get a digest of it via the hash I implemented:
+    
+```py
+# Get a digest of it via hashing.
+hashed_input = SHA256(msg).hash
+```
+    
+My chosen cipher is RSA, and in my `DigitalSignature` object I have two functions for encryption and decryption.
+    
+```py
+    @staticmethod
+    def assymetric_encryption(msg):
+        private_key = rsa.generate_private_key(
+            public_exponent=65537,
+            key_size=2048,
+            backend=default_backend()
+        )
+
+        public_key = private_key.public_key()
+
+        encrypted = public_key.encrypt(
+            msg,
+            padding.OAEP(
+                mgf=padding.MGF1(algorithm=hashes.SHA256()),
+                algorithm=hashes.SHA256(),
+                label=None
+            )
+        )
+
+        return encrypted, private_key
+
+    @staticmethod
+    def assymetric_decryption(encrypted_message, private_key):
+        original_message = private_key.decrypt(
+            encrypted_message,
+            padding.OAEP(
+                mgf=padding.MGF1(algorithm=hashes.SHA256()),
+                algorithm=hashes.SHA256(),
+                label=None
+            )
+        )
+
+        return original_message
+```
+   
+The last step is to create a function to perform the digital signature check.
+    
+```py
+    @staticmethod
+    def digital_signature_check(original_message, decrypted_message):
+        if SHA256(original_message).hash == decrypted_message:
+            print("STATUS: OK. HASHES ARE THE SAME")
+```
+ 
+And let's save all the hashes in a local hash map.
+    
+```py
+    @staticmethod
+    def save_to_datastore(key, input_string):
+        dummy_datastore[key] = SHA256(input_string).hash
+```
+  
+## RESULTS / CONCLUSION
+    
+During this laboratory work we implemented a `Digital Signature Check` for a user input with a `Hashing Algorithm`. The tools I implemented and used are `SHA256` and `RSA Cipher`. In the end, I performed a digital signature check by comparing the hash of the message with the decrypted one. The main code and results are as follow:
+    
+```py
+if __name__ == '__main__':
+    # Take the user input message.
+    msg = DigitalSignature.take_input()
+
+    # Get a digest of it via hashing.
+    hashed_input = SHA256(msg).hash
+
+    print(hashed_input)
+
+    # Encrypted message.
+    encrypted_message, private_key = DigitalSignature.assymetric_encryption(
+        hashed_input.encode())
+    
+    # Decrypted message.
+    decrypted_message = DigitalSignature.assymetric_decryption(
+        encrypted_message, private_key).decode()
+
+    # Perform a digital signature check by comparing the hash of the message with the decrypted one.
+    DigitalSignature.digital_signature_check(msg, decrypted_message)
+```
+    
+Output:
+    
+```md
+STATUS: OK. HASHES ARE THE SAME
 ```
