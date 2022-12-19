@@ -17,13 +17,14 @@ All the solutions are written in =Python= and =Ruby=.
 
 ** 🎯 PROGRESS
 
-| Laboratory No. | Status  | Grade     |
-|----------------+---------+-----------|
-| [[https://github.com/IuraCPersonal/cs/blob/main/reports/REPORT_LAB1.org][LAB 01]]         | =DONE=  | =10=      |
-| [[https://github.com/IuraCPersonal/cs/blob/main/reports/REPORT_LAB2.org][LAB 02]]         | =FIXED= | =7=       |
-| [[https://github.com/IuraCPersonal/cs/blob/main/reports/REPORT_LAB3.org][LAB 03]]         | =DONE=  | =10= |
-| [[https://github.com/IuraCPersonal/cs/blob/main/reports/REPORT_LAB4.md][LAB 04]]         | =DONE=  | =WAITING= |
-|----------------+---------+-----------|
+| Laboratory No. | Status  |
+|----------------+-----------------|
+| [[https://github.com/IuraCPersonal/cs/blob/main/reports/REPORT_LAB1.org][LAB 01]]         | =DONE=  |
+| [[https://github.com/IuraCPersonal/cs/blob/main/reports/REPORT_LAB2.org][LAB 02]]         | =DONE= |
+| [[https://github.com/IuraCPersonal/cs/blob/main/reports/REPORT_LAB3.org][LAB 03]]         | =DONE=  |
+| [[https://github.com/IuraCPersonal/cs/blob/main/reports/REPORT_LAB4.md][LAB 04]]          | =DONE=  |
+| [[https://github.com/IuraCPersonal/cs/blob/main/reports/REPORT_LAB5.md][LAB 05]]          | =DONE=  |
+|----------------+----------------|
 
 ** 📮 CONTACT
 
